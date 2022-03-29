@@ -32,35 +32,6 @@ def button_val():
     for k,v in subjects.year_names.items():
         if params.getvalue('botun')==v:
             yr_val(k)
-
-def decide_year(year):
-    cookies_string = os.environ.get('HTTP_COOKIE', '')
-    all_cookies_object = cookies.SimpleCookie(cookies_string)
-    if year is not None:
-        cookie = cookies.SimpleCookie()
-        cookie['god'] = year
-        print (cookie.output())
-    elif all_cookies_object.get('year'):
-        year = all_cookies_object.get('year').value
-    else:
-        year = 1
-    return year
-
-cookie = cookies.SimpleCookie()
-
-def save_data(params):
-    cookies_string = os.environ.get('HTTP_COOKIE', '')
-    all_cookies_object = cookies.SimpleCookie(cookies_string)
-    for k in params:
-        cookie[k] = params.getvalue(k)
-        print(cookie) 
-
-    
-years = decide_year(params.getvalue('year'))
-
-checked=""         
-    
-
 start_html()
 def yr_val(yr):
     for k_par,v_par in subjects.subjects.items():
