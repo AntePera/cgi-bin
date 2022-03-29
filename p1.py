@@ -1,4 +1,4 @@
-#!C:\Users\antep\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\python.exe
+#!python.exe
 import subjects
 import cgi
 from webbrowser import get
@@ -8,6 +8,13 @@ import os
 params = cgi.FieldStorage()
 C=cookies.SimpleCookie()
 print ("Set-Cookie:Domain = http://localhost/cgi-bin/p1.py;")
+def make_cook():
+    cookies_string=os.environ.get('HTTP_COOKIE','')
+    cookies_object=cookies.SimpleCookie(cookies_string)
+    cookie=cookies.SimpleCookie()
+    for k in params:
+        cookie[k]=params.getvalue(k)
+        print(cookie.output())
 def start_html():
     print('''
     <!DOCTYPE html>
@@ -40,7 +47,10 @@ def yr_val(yr):
             print(v_par['name'])
             print(v_par['ects'])
             for s,val in subjects.status_names.items():
-                print('''<input type="radio" name=" '''+k_par+ ''' "  value=" '''+s+''' " checked> ''' +val+ '''  ''')
+                if s=='not':
+                    print('''<input type="radio" name=" '''+k_par+ ''' "  value=" '''+s+''' " checked> ''' +val+ '''  ''')
+                else:
+                     print('''<input type="radio" name=" '''+k_par+ ''' "  value=" '''+s+''' " > ''' +val+ '''  ''')
                 vals=cookie(s)
                 C[k_par]=vals
     # for k,v in subjects.year_names.items():
@@ -56,8 +66,7 @@ def cookie(b_val):
     if b_val=='pass':
         b_val='Passed'
         return b_val
-    
+make_cook()    
 button_val()
 print (C)
 end_html()
-
