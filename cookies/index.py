@@ -1,0 +1,29 @@
+#!C:\Users\antep\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\python.exe
+import base
+import cgi
+import translate
+import os
+
+params = cgi.FieldStorage()
+language = translate.decide_language(params.getvalue('lang'))
+
+def print_navigation():
+    print("""
+    <div>
+    <a href="index.py">""" + translate.make_translations(language, 'home') + """</a>
+    <a href="index.py">""" + translate.make_translations(language, 'articles') + """</a>
+    <a href="index.py">""" + translate.make_translations(language, 'cart') + """</a>
+    <a href="index.py">""" + translate.make_translations(language, 'contact') + """</a>
+    </div>
+     """)
+
+
+
+base.start_html()
+print_navigation()
+translate.display_language()
+base.end_html()
+print (params)
+
+
+

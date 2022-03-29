@@ -1,4 +1,5 @@
 #!C:\Users\antep\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\python.exe
+
 subjects = {
     'ip' : { 'name' : 'Introduction to programming' , 'year' : 1, 'ects' : 6 },
     'c1' : { 'name' : 'Calculus 1' , 'year' : 1, 'ects' : 7 },
